@@ -1,0 +1,23 @@
+{
+  "name": "@aarambham/admin",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "15.5.28",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@aarambham/ui": "workspace:*",
+    "@aarambham/core": "workspace:*",
+    "@aarambham/validation": "workspace:*",
+    "@aarambham/auth": "workspace:*",
+    "tailwindcss": "^3.4.17",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@aarambham/storage",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@aarambham/core": "workspace:*"
+  }
+}
