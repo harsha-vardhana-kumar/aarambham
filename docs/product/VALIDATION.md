@@ -31,3 +31,11 @@ Domain checks cover Telugu article validation, invalid archive dates, edition do
 - [Public homepage, desktop](../previews/web-desktop.png)
 - [Admin dashboard, desktop](../previews/admin-desktop.png)
 - [Public homepage, mobile](../previews/web-mobile.png)
+
+## Review follow-up — 25 October 2026
+
+Fixed the saved-draft paragraph boundary bug and aligned newsroom story headlines with the shared Noto Serif Telugu token. Draft serialization now preserves blank-line separators exactly, including additional internal whitespace, so valid 50-character drafts survive reload and subsequent saves of other stories.
+
+Verification after these changes: TypeScript, zero-warning lint, 7 domain tests, both production builds and all 15 Chromium tests pass. The two new browser regressions cover minimum-length multi-paragraph drafts with standard and irregular blank-line separators.
+
+GitHub Actions on the original published milestone also passed all checks. PR #1 is published and open; the earlier GitHub authorization blocker was resolved. The Vercel preview failed separately. Its PR metadata reports an unset project root; the production screenshot still points to the README-only main commit. Exact Vercel build-log diagnosis and project changes await Vercel access. No merge, manual deployment or AWS action was performed during this follow-up.

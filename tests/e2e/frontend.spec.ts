@@ -199,3 +199,38 @@ for (const path of [
     expect(results.violations).toEqual([]);
   });
 }
+
+for (const separator of ["\n\n", "\n \n\n\n"]) {
+  test(`minimum-length draft preserves paragraph separator ${JSON.stringify(separator)}`, async ({
+    page,
+  }) => {
+    const paragraphLength = (50 - separator.length) / 2;
+    const body =
+      "A".repeat(Math.floor(paragraphLength)) +
+      separator +
+      "B".repeat(Math.ceil(paragraphLength));
+    expect(body.length).toBe(50);
+    await page.goto(`${admin}/articles/new`);
+    await page
+      .getByLabel("Telugu headline")
+      .fill("Paragraph boundary regression");
+    await page
+      .getByLabel("Summary")
+      .fill("Demonstration draft for paragraph preservation.");
+    await page.getByLabel("Article body").fill(body);
+    await page
+      .getByLabel("Category", { exact: true })
+      .selectOption("districts");
+    await page.getByRole("button", { name: "Save demo draft" }).click();
+    await expect(page).toHaveURL(/local-.*\/edit/);
+    const savedUrl = page.url();
+    await page.reload();
+    await expect(page.getByLabel("Article body")).toHaveValue(body);
+    await page.goto(`${admin}/articles/demo-1/edit`);
+    await expect(page.getByLabel("Telugu headline")).not.toHaveValue("");
+    await page.getByRole("button", { name: "Save demo draft" }).click();
+    await expect(page.getByRole("status")).toContainText("Demo draft saved");
+    await page.goto(savedUrl);
+    await expect(page.getByLabel("Article body")).toHaveValue(body);
+  });
+}

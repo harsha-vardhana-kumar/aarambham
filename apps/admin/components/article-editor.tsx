@@ -61,7 +61,7 @@ export function ArticleEditor({ id }: { id?: string }) {
         id: draftId,
         slug: draftId,
         ...result.data,
-        body: result.data.body.split(/\n\s*\n/),
+        body: result.data.body.split("\n\n"),
         status: "draft",
         isDemo: true,
         updatedAt: new Date().toISOString(),

@@ -262,7 +262,7 @@
   width: 46%;
 }
 .table-story {
-  font: 500 0.88rem/1.9 var(--font-telugu-sans);
+  font: 600 0.88rem/1.9 var(--font-telugu-serif);
   display: block;
   min-width: 180px;
 }

@@ -15,7 +15,8 @@ export function readDrafts(): Article[] {
         a.body.every((p: unknown) => typeof p === "string") &&
         a.isDemo === true &&
         a.status === "draft" &&
-        articleInputSchema.safeParse({ ...a, body: a.body.join("\n") }).success
+        articleInputSchema.safeParse({ ...a, body: a.body.join("\n\n") })
+          .success
       );
     });
   } catch {
